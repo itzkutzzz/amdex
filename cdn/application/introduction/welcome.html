@@ -164,7 +164,7 @@
 
     let index = 0;
     setInterval(() => {
-      document.getElementById("message").textContent = messages[index];
+      document.title = messages[index];
       index = (index + 1) % messages.length; // Loop back to the first message
     }, 1000); // Change the text every 1000ms (1 second)
   </script>
