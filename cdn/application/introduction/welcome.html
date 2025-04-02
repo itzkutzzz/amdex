@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanks for installing AmdEX!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+        }
+
+        .thank-you-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .thank-you-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            animation: pulse 2s infinite;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            color: #2d3748;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #718096;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        button, .website-button {
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .website-button {
+            background-color: #4a5568;
+            color: white;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .website-button:hover {
+            background-color: #2d3748;
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .thank-you-card {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            p {
+                font-size: 16px;
+            }
+            
+            .button-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="thank-you-card" style="opacity: 0; transform: translateY(10px);">
+            <div class="logo-container">
+                <img src="https://amdex-hub.vercel.app/cdn/img/logo1.png" alt="Amdex Logo" class="logo">
+            </div>
+            <h1>Thank You for Installing the Amdex App</h1>
+            <p>You're all set! Start exploring the features and benefits of Amdex.</p>
+            <div class="button-container">
+                <a href="https://amdex-hub.vercel.app/" class="website-button">Go to Our Website</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add a subtle entrance animation
+            const card = document.querySelector('.thank-you-card');
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+  <body>
+  <div id="message">Thanks for installing AmdEX!</div>
+
+  <script>
+    const messages = [
+      "Thanks for installing AmdEX!",
+      "Thanks for installing AmdEX",
+      "Thanks for installing AmdEX.",
+      "Thanks for installing AmdEX",
+      "Thanks for installing AmdEX :)",
+      "Thanks for installing AmdEX :",
+      "Thanks for installing AmdEX",
+      "Thanks for installing AmdEX!"
+    ];
+
+    let index = 0;
+    setInterval(() => {
+      document.getElementById("message").textContent = messages[index];
+      index = (index + 1) % messages.length; // Loop back to the first message
+    }, 1000); // Change the text every 1000ms (1 second)
+  </script>
+</body>
+</html>
