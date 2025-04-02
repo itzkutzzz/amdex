@@ -233,6 +233,52 @@
         color: white;
     }
 
+    .contact-section {
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 4rem 2rem;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .contact-card {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        transition: transform 0.3s ease;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .contact-card h3 {
+        margin-bottom: 1rem;
+        color: #0066cc;
+    }
+
+    .contact-card a {
+        color: #0066cc;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .contact-card a:hover {
+        color: #004c99;
+        text-decoration: underline;
+    }
+
     footer {
         background-color: #333;
         color: white;
@@ -283,6 +329,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#error-templates">Error Templates</a></li>
+                <li><a href="#contact">Contact</a></li>
                 <li><a href="#donate">Donate</a></li>
             </ul>
         </nav>
@@ -317,6 +364,10 @@
                     <h3>Great Videos</h3>
                     <p>Deliver high-quality, finished videos that exceed expectations. From color grading to audio enhancement, we ensure your videos stand out from the competition.</p>
                 </div>
+                <div class="service-card">
+                    <h3>Completely FREE Error Page Templates</h3>
+                    <p>Access our extensive library of professionally designed error page templates at absolutely no cost. Enhance your website's user experience with stylish error pages for every HTTP status code.</p>
+                </div>
             </div>
         </section>
 
@@ -336,6 +387,27 @@
                 <a href="https://amdex-hub.vercel.app/cdn/error/Not_Implemented_Error_23975328578128764587621657812765671284876128765172851865681286458762145.html" target="_blank" class="template-card">Not Implemented Error</a>
                 <a href="https://amdex-hub.vercel.app/cdn/error/Service_Unavailable_Error_16788176268217651268756782195981256781651287558212152148718756821521.html" target="_blank" class="template-card">Service Unavailable Error</a>
                 <a href="https://amdex-hub.vercel.app/cdn/error/Too_Many_Requests_Error_2785782385776278586273675826877523687278352323523623.html" target="_blank" class="template-card">Too Many Requests Error</a>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+            <h2>Contact Me</h2>
+            <p>Have questions or want to collaborate? Reach out through any of these channels.</p>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Discord</h3>
+                    <p>Username: n1o8t</p>
+                    <p>Server: <a href="https://discord.gg/2vNTkdPtJy" target="_blank">Join our Discord</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <p><a href="mailto:kurt3daybann@gmail.com">kurt3daybann@gmail.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>YouTube</h3>
+                    <p>Owner: <a href="https://youtube.com/@literallykutz" target="_blank">@literallykutz</a></p>
+                    <p>Business: <a href="https://youtube.com/@amd-ex" target="_blank">@amd-ex</a></p>
+                </div>
             </div>
         </section>
 
@@ -397,7 +469,7 @@
             });
             
             donateButton.addEventListener('click', function() {
-                window.location.href = 'https://amdex-hub.vercel.app/cdn/err/payment/donationerror-28765876126784576128798541728658761286758627.html';
+                window.location.href = 'https://amdex-hub.vercel.app/cdn/error/Donation_Error_178257876128851878177568721656786819129854828752176421768487612878712.html';
             });
         }
     });
