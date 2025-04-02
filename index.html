@@ -106,7 +106,7 @@
         padding: 4rem 2rem;
     }
 
-    .about-section, .services-section, .donate-section {
+    .about-section, .services-section, .donate-section, .error-templates-section {
         text-align: center;
         max-width: 1200px;
         margin: 0 auto;
@@ -197,6 +197,42 @@
         transform: scale(1.05);
     }
 
+    .error-templates-section {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 4rem 2rem;
+    }
+
+    .template-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .template-card {
+        background-color: white;
+        color: #0066cc;
+        font-weight: bold;
+        padding: 1.5rem 1rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100px;
+        text-align: center;
+    }
+
+    .template-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background-color: #0066cc;
+        color: white;
+    }
+
     footer {
         background-color: #333;
         color: white;
@@ -227,14 +263,18 @@
             flex-direction: column;
             align-items: center;
         }
+        
+        .template-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
     }
     </style>
-    <link rel="icon" href="https://amdex-hub.vercel.app/cdn/img/favicon.png" type="image/png">
+    <link rel="icon" href="https://cdn.discordapp.com/attachments/1355613974682402888/1356740300336271411/amdex_3.png?ex=67edaa5e&is=67ec58de&hm=ff8e229b2948f23a388a0d829772d23fc84210d779f416756e654fc70bda76d6&" type="image/png">
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <img src="https://amdex-hub.vercel.app/cdn/img/logo1.png" alt="amdEX Logo" class="logo">
+            <img src="https://media.discordapp.net/attachments/1355607066160664765/1356737983180701706/amdex_2.png?ex=67eda836&is=67ec56b6&hm=058ee104f4fd17089508a16dfdb0d875505b1b7788284e3bf051deb0f499868c&=&width=854&height=854" alt="amdEX Logo" class="logo">
             <h1>amdEX</h1>
         </div>
         <nav>
@@ -242,6 +282,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#error-templates">Error Templates</a></li>
                 <li><a href="#donate">Donate</a></li>
             </ul>
         </nav>
@@ -276,10 +317,25 @@
                     <h3>Great Videos</h3>
                     <p>Deliver high-quality, finished videos that exceed expectations. From color grading to audio enhancement, we ensure your videos stand out from the competition.</p>
                 </div>
-                <div class="service-card">
-                    <h3>FREE Error Page Templates!</h3>
-                    <p>Make sure you get amazing and free error page templates, even resellable! No need for credit too, enjoy!</p>
-                </div>
+            </div>
+        </section>
+
+        <section id="error-templates" class="error-templates-section">
+            <h2>Error Page Templates</h2>
+            <p>Browse our collection of free error page templates for your website.</p>
+            <div class="template-grid">
+                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Gateway_Error_2876578218747891278487125871251259129858126565872187654187624129491249812651105423.html" target="_blank" class="template-card">Bad Gateway Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Request_Error_19298485721876578786128756867218754129981281991192985127571235235.html" target="_blank" class="template-card">Bad Request Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Content_Too_Large_Error_786218674876`1287412768587612687568721576726157861285741287489284189218512412562167846712786521.html" target="_blank" class="template-card">Content Too Large Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Forbidden_Error_971865125678671687251252150091298478917895712576128762178487728914817567671256782178784167234676767412.html" target="_blank" class="template-card">Forbidden Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Gateway_Timeout_Error_567762587612785872186758612656127871248718764126558217421512521.html" target="_blank" class="template-card">Gateway Timeout Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Gone_Error_7817685761827865812786567812687512919285418517557667512989819898126561276581289498712984612675125214214.html" target="_blank" class="template-card">Gone Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Im_A_Teapot_Error_236452656712678587217587123657127547612786521.html" target="_blank" class="template-card">I'm A Teapot Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Internal_Server_Error_5376237676587876723567252878279157728127482677589909281984591872657712571.html" target="_blank" class="template-card">Internal Server Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Found_Error_6712768812576812568712919895887157176512497812457643276557126746512.html" target="_blank" class="template-card">Not Found Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Implemented_Error_23975328578128764587621657812765671284876128765172851865681286458762145.html" target="_blank" class="template-card">Not Implemented Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Service_Unavailable_Error_16788176268217651268756782195981256781651287558212152148718756821521.html" target="_blank" class="template-card">Service Unavailable Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Too_Many_Requests_Error_2785782385776278586273675826877523687278352323523623.html" target="_blank" class="template-card">Too Many Requests Error</a>
             </div>
         </section>
 
@@ -296,6 +352,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -340,7 +397,7 @@
             });
             
             donateButton.addEventListener('click', function() {
-                window.location.href = 'https://amdex-hub.vercel.app/cdn/error/Donation_Error_178257876128851878177568721656786819129854828752176421768487612878712.html';
+                window.location.href = 'https://amdex-hub.vercel.app/cdn/err/payment/donationerror-28765876126784576128798541728658761286758627.html';
             });
         }
     });
