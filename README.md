@@ -1,2 +1,0 @@
-# amdex
-site
