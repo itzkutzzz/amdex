@@ -1,13 +1,9 @@
-
-<!DOCTYPE html>
-<html lang="en" w-tid="1">
-<head w-tid="3">
-    
-<title>AMDEX Hub</title>
-<link rel="icon" href="https://amdex-hub.vercel.app/cdn/img/favicon.png" type="image/png" w-tid="15"/>
-<meta charset="UTF-8" w-tid="5"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" w-tid="7"/>
-    <style w-tid="11">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>amdEX</title>
+    <style>
     * {
         margin: 0;
         padding: 0;
@@ -110,7 +106,7 @@
         padding: 4rem 2rem;
     }
 
-    .about-section, .services-section, .donate-section, .error-templates-section, .games-section {
+    .about-section, .services-section, .donate-section, .error-templates-section, .games-section, .link-info-section {
         text-align: center;
         max-width: 1200px;
         margin: 0 auto;
@@ -306,43 +302,72 @@
         height: 600px;
     }
 
-    footer {
-        background-color: #333;
-        color: white;
+    .link-info-section {
         text-align: center;
-        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    @media (max-width: 768px) {
-        header {
-            flex-direction: column;
-            padding: 1rem;
-        }
-        
-        nav ul {
-            margin-top: 1rem;
-        }
-        
-        nav ul li {
-            margin: 0 0.5rem;
-        }
-        
-        .hero {
-            height: auto;
-            padding: 4rem 1rem;
-        }
-        
-        .service-cards {
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .template-grid {
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        }
+    .link-info-section .link-info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 800px;
+        margin: 0 auto;
     }
-    </style>
-    <style w-tid="13">
+
+    #link-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    #check-link-btn {
+        padding: 10px 20px;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #check-link-btn:hover {
+        background-color: #004c99;
+    }
+
+    .link-info-results {
+        width: 100%;
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+    }
+
+    .link-info-loading .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #0066cc;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .social-images img {
+        margin: 5px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
     .html-previewer-section {
         background-color: #f9f9f9;
         padding: 4rem 2rem;
@@ -380,7 +405,88 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
+    .error-display-container {
+        position: fixed;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 300px;
+        background-color: white;
+        border: 2px solid #0066cc;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
+
+    .error-display-header {
+        padding: 10px;
+        background-color: #f0f0f0;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+    }
+
+    .error-display-content {
+        max-height: 400px;
+        overflow-y: auto;
+        padding: 10px;
+    }
+
+    .error-log-entries {
+        max-height: 350px;
+        overflow-y: auto;
+    }
+
+    .error-log-entry {
+        background-color: #f9f9f9;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-left: 4px solid #ff4136;
+        border-radius: 4px;
+    }
+
+    .error-display-actions {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .error-display-clear {
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
     @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            padding: 1rem;
+        }
+        
+        nav ul {
+            margin-top: 1rem;
+        }
+        
+        nav ul li {
+            margin: 0 0.5rem;
+        }
+        
+        .hero {
+            height: auto;
+            padding: 4rem 1rem;
+        }
+        
+        .service-cards {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .template-grid {
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        
         .previewer-container {
             flex-direction: column;
         }
@@ -390,148 +496,556 @@
         }
     }
     </style>
-    <link rel="icon" href="https://amdex-hub.vercel.app/cdn/img/favicon.png" type="image/png" w-tid="15"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css" w-tid="17"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css" w-tid="19"/>
+    <link rel="icon" href="https://amdex-hub.vercel.app/cdn/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
 </head>
-<body w-tid="21">
-    <header w-tid="23">
-        <div class="logo-container" w-tid="25">
-            <img src="https://amdex-hub.vercel.app/cdn/img/logo1.png" alt="amdEX Logo" class="logo" w-tid="27"/>
-            <h1 w-tid="29">amdEX</h1>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://amdex-hub.vercel.app/cdn/img/logo1.png" alt="amdEX Logo" class="logo">
+            <h1>amdEX</h1>
         </div>
-        <nav w-tid="31">
-            <ul w-tid="33">
-                <li w-tid="35"><a href="#home" w-tid="37">Home</a></li>
-                <li w-tid="39"><a href="#about" w-tid="41">About</a></li>
-                <li w-tid="43"><a href="#services" w-tid="45">Services</a></li>
-                <li w-tid="47"><a href="#error-templates" w-tid="49">Error Templates</a></li>
-                <li w-tid="51"><a href="#games" w-tid="53">Games</a></li>
-                <li w-tid="55"><a href="#contact" w-tid="57">Contact</a></li>
-                <li w-tid="59"><a href="#donate" w-tid="61">Donate</a></li>
-                <li w-tid="63"><a href="link-redirector.html" w-tid="65">Link Redirector</a></li>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#error-templates">Error Templates</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#donate">Donate</a></li>
+                <li><a href="link-redirector.html">Link Redirector</a></li>
             </ul>
         </nav>
     </header>
 
-    <main w-tid="67">
-        <section id="home" class="hero" w-tid="69">
-            <div class="hero-content" w-tid="71">
-                <h2 w-tid="73">Welcome to amdEX</h2>
-                <p w-tid="75">Your trusted partner in innovative solutions</p>
-                <button class="cta-button" w-tid="77">WELCOME</button>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Welcome to amdEX</h2>
+                <p>Your trusted partner in innovative solutions</p>
+                <button class="cta-button">WELCOME</button>
             </div>
         </section>
 
-        <section id="about" class="about-section" w-tid="79">
-            <h2 w-tid="81">About Us</h2>
-            <p w-tid="83">amdEX is a forward-thinking company dedicated to providing cutting-edge solutions for modern challenges.</p>
+        <section id="about" class="about-section">
+            <h2>About Us</h2>
+            <p>amdEX is a forward-thinking company dedicated to providing cutting-edge solutions for modern challenges.</p>
         </section>
 
-        <section id="services" class="services-section" w-tid="85">
-            <h2 w-tid="87">Our Services</h2>
-            <div class="service-cards" w-tid="89">
-                <div class="service-card" w-tid="91">
-                    <h3 w-tid="93">Free Video Editing</h3>
-                    <p w-tid="95">Professional-quality video editing services at no cost to you. Our team uses industry-leading software to transform your raw footage into polished content.</p>
+        <section id="services" class="services-section">
+            <h2>Our Services</h2>
+            <div class="service-cards">
+                <div class="service-card">
+                    <h3>Free Video Editing</h3>
+                    <p>Professional-quality video editing services at no cost to you. Our team uses industry-leading software to transform your raw footage into polished content.</p>
                 </div>
-                <div class="service-card" w-tid="97">
-                    <h3 w-tid="99">Fun</h3>
-                    <p w-tid="101">Inject creativity and entertainment into your videos. We specialize in adding engaging elements that captivate your audience and make your content memorable.</p>
+                <div class="service-card">
+                    <h3>Fun</h3>
+                    <p>Inject creativity and entertainment into your videos. We specialize in adding engaging elements that captivate your audience and make your content memorable.</p>
                 </div>
-                <div class="service-card" w-tid="103">
-                    <h3 w-tid="105">Great Videos</h3>
-                    <p w-tid="107">Deliver high-quality, finished videos that exceed expectations. From color grading to audio enhancement, we ensure your videos stand out from the competition.</p>
+                <div class="service-card">
+                    <h3>Great Videos</h3>
+                    <p>Deliver high-quality, finished videos that exceed expectations. From color grading to audio enhancement, we ensure your videos stand out from the competition.</p>
                 </div>
-                <div class="service-card" w-tid="109">
-                    <h3 w-tid="111">Completely FREE Error Page Templates</h3>
-                    <p w-tid="113">Access our extensive library of professionally designed error page templates at absolutely no cost. Enhance your website's user experience with stylish error pages for every HTTP status code.</p>
+                <div class="service-card">
+                    <h3>Completely FREE Error Page Templates</h3>
+                    <p>Access our extensive library of professionally designed error page templates at absolutely no cost. Enhance your website's user experience with stylish error pages for every HTTP status code.</p>
                 </div>
             </div>
         </section>
 
-        <section id="error-templates" class="error-templates-section" w-tid="115">
-            <h2 w-tid="117">Error Page Templates</h2>
-            <p w-tid="119">Browse our collection of free error page templates for your website.</p>
-            <div class="template-grid" w-tid="121">
-                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Gateway_Error_2876578218747891278487125871251259129858126565872187654187624129491249812651105423.html" target="_blank" class="template-card" w-tid="123">Bad Gateway Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Request_Error_19298485721876578786128756867218754129981281991192985127571235235.html" target="_blank" class="template-card" w-tid="125">Bad Request Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Content_Too_Large_Error_786218674876`1287412768587612687568721576726157861285741287489284189218512412562167846712786521.html" target="_blank" class="template-card" w-tid="127">Content Too Large Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Forbidden_Error_971865125678671687251252150091298478917895712576128762178487728914817567671256782178784167234676767412.html" target="_blank" class="template-card" w-tid="129">Forbidden Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Gateway_Timeout_Error_567762587612785872186758612656127871248718764126558217421512521.html" target="_blank" class="template-card" w-tid="131">Gateway Timeout Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Gone_Error_7817685761827865812786567812687512919285418517557667512989819898126561276581289498712984612675125214214.html" target="_blank" class="template-card" w-tid="133">Gone Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Im_A_Teapot_Error_236452656712678587217587123657127547612786521.html" target="_blank" class="template-card" w-tid="135">I'm A Teapot Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Internal_Server_Error_5376237676587876723567252878279157728127482677589909281984591872657712571.html" target="_blank" class="template-card" w-tid="137">Internal Server Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Found_Error_6712768812576812568712919895887157176512497812457643276557126746512.html" target="_blank" class="template-card" w-tid="139">Not Found Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Implemented_Error_23975328578128764587621657812765671284876128765172851865681286458762145.html" target="_blank" class="template-card" w-tid="141">Not Implemented Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Service_Unavailable_Error_16788176268217651268756782195981256781651287558212152148718756821521.html" target="_blank" class="template-card" w-tid="143">Service Unavailable Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Too_Many_Requests_Error_2785782385776278586273675826877523687278352323523623.html" target="_blank" class="template-card" w-tid="145">Too Many Requests Error</a>
+        <section id="error-templates" class="error-templates-section">
+            <h2>Error Page Templates</h2>
+            <p>Browse our collection of free error page templates for your website.</p>
+            <div class="template-grid">
+                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Gateway_Error_2876578218747891278487125871251259129858126565872187654187624129491249812651105423.html" target="_blank" class="template-card">Bad Gateway Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Request_Error_19298485721876578786128756867218754129981281991192985127571235235.html" target="_blank" class="template-card">Bad Request Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Content_Too_Large_Error_786218674876`1287412768587612687568721576726157861285741287489284189218512412562167846712786521.html" target="_blank" class="template-card">Content Too Large Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Forbidden_Error_971865125678671687251252150091298478917895712576128762178487728914817567671256782178784167234676767412.html" target="_blank" class="template-card">Forbidden Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Gateway_Timeout_Error_567762587612785872186758612656127871248718764126558217421512521.html" target="_blank" class="template-card">Gateway Timeout Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Gone_Error_7817685761827865812786567812687512919285418517557667512989819898126561276581289498712984612675125214214.html" target="_blank" class="template-card">Gone Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Im_A_Teapot_Error_236452656712678587217587123657127547612786521.html" target="_blank" class="template-card">I'm A Teapot Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Internal_Server_Error_5376237676587876723567252878279157728127482677589909281984591872657712571.html" target="_blank" class="template-card">Internal Server Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Found_Error_6712768812576812568712919895887157176512497812457643276557126746512.html" target="_blank" class="template-card">Not Found Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Implemented_Error_23975328578128764587621657812765671284876128765172851865681286458762145.html" target="_blank" class="template-card">Not Implemented Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Service_Unavailable_Error_16788176268217651268756782195981256781651287558212152148718756821521.html" target="_blank" class="template-card">Service Unavailable Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Too_Many_Requests_Error_2785782385776278586273675826877523687278352323523623.html" target="_blank" class="template-card">Too Many Requests Error</a>
             </div>
         </section>
 
-        <section id="games" class="games-section" w-tid="147">
-            <h2 w-tid="149">Games</h2>
-            <p w-tid="151">Check out our collection of interactive games and projects.</p>
-            <div class="iframe-container" w-tid="153">
-                <a href="https://sites.google.com/view/proj-ccc/report-search-bugs/classroom-work-list" target="_blank" class="template-card" style="display: block; width: 100%; height: 100px; margin-top: 20px;" w-tid="155">
+        <section id="link-info-getter" class="link-info-section">
+            <h2>Link Information Getter</h2>
+            <div class="link-info-container">
+                <input type="text" id="link-input" placeholder="Enter a website URL (e.g., https://example.com)">
+                <button id="check-link-btn">Check Link</button>
+                <div id="link-info-results" class="link-info-results"></div>
+            </div>
+        </section>
+
+        <section id="games" class="games-section">
+            <h2>Games</h2>
+            <p>Check out our collection of interactive games and projects.</p>
+            <div class="iframe-container">
+                <a href="https://sites.google.com/view/proj-ccc/report-search-bugs/classroom-work-list" target="_blank" class="template-card" style="display: block; width: 100%; height: 100px; margin-top: 20px;">
                     Visit Our Games & Projects
                 </a>
             </div>
         </section>
 
-        <section id="html-previewer" class="html-previewer-section" w-tid="157">
-            <h2 w-tid="159">HTML Code Previewer</h2>
-            <p w-tid="161">Write HTML code and see it rendered in real-time!</p>
-            <div class="previewer-container" w-tid="163">
-                <div class="code-input-container" w-tid="165">
-                    <textarea id="html-code-input" placeholder="Enter your HTML code here..." w-tid="167"></textarea>
+        <section id="html-previewer" class="html-previewer-section">
+            <h2>HTML Code Previewer</h2>
+            <p>Write HTML code and see it rendered in real-time!</p>
+            <div class="previewer-container">
+                <div class="code-input-container">
+                    <textarea id="html-code-input" placeholder="Enter your HTML code here..."></textarea>
                 </div>
-                <div class="preview-container" w-tid="169">
-                    <iframe id="html-preview" frameborder="0" w-tid="171"></iframe>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section" w-tid="173">
-            <h2 w-tid="175">Contact Me</h2>
-            <p w-tid="177">Have questions or want to collaborate? Reach out through any of these channels.</p>
-            <div class="contact-info" w-tid="179">
-                <div class="contact-card" w-tid="181">
-                    <h3 w-tid="183">Discord</h3>
-                    <p w-tid="185">Username: n1o8t</p>
-                    <p w-tid="187">Server: <a href="https://discord.gg/2vNTkdPtJy" target="_blank" w-tid="189">Join our Discord</a></p>
-                </div>
-                <div class="contact-card" w-tid="191">
-                    <h3 w-tid="193">Email</h3>
-                    <p w-tid="195"><a href="mailto:kurt3daybann@gmail.com" w-tid="197">kurt3daybann@gmail.com</a></p>
-                </div>
-                <div class="contact-card" w-tid="199">
-                    <h3 w-tid="201">YouTube</h3>
-                    <p w-tid="203">Owner: <a href="https://youtube.com/@literallykutz" target="_blank" w-tid="205">@literallykutz</a></p>
-                    <p w-tid="207">Business: <a href="https://youtube.com/@amd-ex" target="_blank" w-tid="209">@amd-ex</a></p>
-                </div>
-                <div class="contact-card" w-tid="211">
-                    <h3 w-tid="213">Roblox</h3>
-                    <p w-tid="215">Username: AmdEX_Official</p>
-                    <p w-tid="217"><a href="https://www.roblox.com/users/8249483517/profile" target="_blank" w-tid="219">Visit Profile</a></p>
+                <div class="preview-container">
+                    <iframe id="html-preview" frameborder="0"></iframe>
                 </div>
             </div>
         </section>
 
-        <section id="donate" class="donate-section" w-tid="221">
-            <h2 w-tid="223">Donate</h2>
-            <p w-tid="225">Support our mission to provide free video editing services to everyone.</p>
-            <button class="donate-button" w-tid="227">Make a Donation</button>
+        <section id="contact" class="contact-section">
+            <h2>Contact Me</h2>
+            <p>Have questions or want to collaborate? Reach out through any of these channels.</p>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>Discord</h3>
+                    <p>Username: n1o8t</p>
+                    <p>Server: <a href="https://discord.gg/2vNTkdPtJy" target="_blank">Join our Discord</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <p><a href="mailto:kurt3daybann@gmail.com">kurt3daybann@gmail.com</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>YouTube</h3>
+                    <p>Owner: <a href="https://youtube.com/@literallykutz" target="_blank">@literallykutz</a></p>
+                    <p>Business: <a href="https://youtube.com/@amd-ex" target="_blank">@amd-ex</a></p>
+                </div>
+                <div class="contact-card">
+                    <h3>Roblox</h3>
+                    <p>Username: AmdEX_Official</p>
+                    <p><a href="https://www.roblox.com/users/8249483517/profile" target="_blank">Visit Profile</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="donate" class="donate-section">
+            <h2>Donate</h2>
+            <p>Support our mission to provide free video editing services to everyone.</p>
+            <button class="donate-button">Make a Donation</button>
         </section>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js" w-tid="229"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js" w-tid="231"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js" w-tid="233"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js" w-tid="235"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js" w-tid="237"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
 
-    <script w-tid="239">
+    <script>
+    // HTMLPreviewerErrorLogger class
+    class HTMLPreviewerErrorLogger {
+        constructor() {
+            this.errorLog = [];
+            this.updateListeners = [];
+            this.setupGlobalErrorCapture();
+        }
+
+        addUpdateListener(listener) {
+            this.updateListeners.push(listener);
+        }
+
+        notifyUpdateListeners() {
+            this.updateListeners.forEach(listener => listener(this.errorLog));
+        }
+
+        logError(errorInfo) {
+            this.errorLog.unshift(errorInfo);
+            this.errorLog = this.errorLog.slice(0, 50);
+            this.notifyUpdateListeners();
+        }
+
+        clearErrorLog() {
+            this.errorLog = [];
+            this.notifyUpdateListeners();
+        }
+
+        setupGlobalErrorCapture() {
+            window.addEventListener('error', (event) => {
+                this.logError({
+                    type: 'Global Error',
+                    message: event.message,
+                    source: event.filename,
+                    line: event.lineno,
+                    column: event.colno,
+                    timestamp: new Date().toLocaleString()
+                });
+            });
+
+            const originalConsoleError = console.error;
+            const originalConsoleLog = console.log;
+            const originalConsoleWarn = console.warn;
+
+            console.error = (...args) => {
+                this.logError({
+                    type: 'Console Error',
+                    message: args.map(arg => String(arg)).join(' '),
+                    timestamp: new Date().toLocaleString()
+                });
+                originalConsoleError.apply(console, args);
+            };
+
+            console.log = (...args) => {
+                this.logError({
+                    type: 'Console Log',
+                    message: args.map(arg => String(arg)).join(' '),
+                    timestamp: new Date().toLocaleString()
+                });
+                originalConsoleLog.apply(console, args);
+            };
+
+            console.warn = (...args) => {
+                this.logError({
+                    type: 'Console Warn',
+                    message: args.map(arg => String(arg)).join(' '),
+                    timestamp: new Date().toLocaleString()
+                });
+                originalConsoleWarn.apply(console, args);
+            };
+        }
+
+        setupErrorCapture(codeMirrorEditor, htmlPreview) {
+            if (!htmlPreview) {
+                console.error('HTML Preview iframe not found');
+                return;
+            }
+
+            htmlPreview.addEventListener('load', () => {
+                try {
+                    const previewDocument = htmlPreview.contentDocument;
+                    if (previewDocument) {
+                        previewDocument.addEventListener('error', (event) => {
+                            this.logError({
+                                type: 'Resource Load Error',
+                                message: `Failed to load resource: ${event.target.src || event.target.href}`,
+                                timestamp: new Date().toLocaleString()
+                            });
+                        }, true);
+                    }
+                } catch (e) {
+                    this.logError({
+                        type: 'Security Error',
+                        message: 'Unable to access iframe content due to security restrictions',
+                        timestamp: new Date().toLocaleString()
+                    });
+                }
+            });
+
+            codeMirrorEditor.on('change', () => {
+                try {
+                    const code = codeMirrorEditor.getValue();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(code, 'text/html');
+                    const parseErrors = doc.querySelector('parsererror');
+                    
+                    if (parseErrors) {
+                        this.logError({
+                            type: 'HTML Parsing Error',
+                            message: parseErrors.textContent,
+                            timestamp: new Date().toLocaleString()
+                        });
+                    }
+                } catch (error) {
+                    this.logError({
+                        type: 'Parsing Error',
+                        message: error.message,
+                        timestamp: new Date().toLocaleString()
+                    });
+                }
+            });
+        }
+    }
+
+    // HTMLPreviewerErrorDisplay class
+    class HTMLPreviewerErrorDisplay {
+        constructor(errorLogger) {
+            this.errorLogger = errorLogger;
+            this.createErrorDisplayContainer();
+        }
+
+        createErrorDisplayContainer() {
+            const errorDisplayContainer = document.createElement('div');
+            errorDisplayContainer.id = 'error-display-container';
+            errorDisplayContainer.classList.add('error-display-container');
+            
+            errorDisplayContainer.innerHTML = `
+                <div class="error-display-header">
+                    <h3>Error Log</h3>
+                </div>
+                <div class="error-display-content">
+                    <div id="error-log-entries" class="error-log-entries"></div>
+                    <div class="error-display-actions">
+                        <button class="error-display-clear">Clear Log</button>
+                    </div>
+                </div>
+            `;
+
+            const style = document.createElement('style');
+            style.textContent = `
+                .error-display-container {
+                    position: fixed;
+                    right: 20px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 300px;
+                    background-color: white;
+                    border: 2px solid #0066cc;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                    z-index: 1000;
+                    transition: all 0.3s ease;
+                }
+
+                .error-display-header {
+                    padding: 10px;
+                    background-color: #f0f0f0;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                }
+
+                .error-display-content {
+                    max-height: 400px;
+                    overflow-y: auto;
+                    padding: 10px;
+                }
+
+                .error-log-entries {
+                    max-height: 350px;
+                    overflow-y: auto;
+                }
+
+                .error-log-entry {
+                    background-color: #f9f9f9;
+                    margin-bottom: 10px;
+                    padding: 10px;
+                    border-left: 4px solid #ff4136;
+                    border-radius: 4px;
+                }
+
+                .error-display-actions {
+                    text-align: center;
+                    margin-top: 10px;
+                }
+
+                .error-display-clear {
+                    background-color: #0066cc;
+                    color: white;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+            `;
+
+            document.body.appendChild(errorDisplayContainer);
+            document.head.appendChild(style);
+
+            this.setupEventListeners();
+        }
+
+        setupEventListeners() {
+            const container = document.getElementById('error-display-container');
+            const clearBtn = container.querySelector('.error-display-clear');
+
+            clearBtn.addEventListener('click', () => {
+                this.errorLogger.clearErrorLog();
+            });
+
+            this.errorLogger.addUpdateListener(this.updateErrorDisplay.bind(this));
+        }
+
+        updateErrorDisplay(errorLog) {
+            const entriesContainer = document.getElementById('error-log-entries');
+            entriesContainer.innerHTML = errorLog.map(error => `
+                <div class="error-log-entry">
+                    <strong>${error.type}</strong>
+                    <p>${error.message}</p>
+                    ${error.source ? `<small>Source: ${error.source}:${error.line}:${error.column}</small>` : ''}
+                    <small>${error.timestamp}</small>
+                </div>
+            `).join('') || '<p>No errors logged.</p>';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const htmlPreview = document.getElementById('html-preview');
+        const codeMirrorElement = document.querySelector('.CodeMirror');
+
+        if (codeMirrorElement && codeMirrorElement.CodeMirror && htmlPreview) {
+            const codeMirrorEditor = codeMirrorElement.CodeMirror;
+            const errorLogger = new HTMLPreviewerErrorLogger();
+            const errorDisplay = new HTMLPreviewerErrorDisplay(errorLogger);
+
+            errorLogger.setupErrorCapture(codeMirrorEditor, htmlPreview);
+        }
+    });
+    </script>
+
+    <script>
+    // Link Information Getter
+    class LinkInformationGetter {
+        constructor() {
+            this.linkInput = document.getElementById('link-input');
+            this.checkLinkBtn = document.getElementById('check-link-btn');
+            this.resultsContainer = document.getElementById('link-info-results');
+            
+            this.setupEventListeners();
+        }
+
+        setupEventListeners() {
+            this.checkLinkBtn.addEventListener('click', () => this.fetchLinkInformation());
+            this.linkInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    this.fetchLinkInformation();
+                }
+            });
+        }
+
+        async fetchLinkInformation() {
+            const url = this.linkInput.value.trim();
+            if (!url) {
+                this.displayError('Please enter a valid URL');
+                return;
+            }
+
+            try {
+                // Use a public CORS proxy that doesn't require pre-approval
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                
+                this.displayLoading('Fetching link information...');
+
+                // Fetch webpage content
+                const response = await fetch(proxyUrl);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const htmlContent = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlContent, 'text/html');
+
+                // Parse URL
+                const parsedUrl = new URL(url);
+                const baseUrl = `${parsedUrl.protocol}//${parsedUrl.hostname}`;
+
+                // Extract metadata
+                const title = doc.title || 'No title found';
+                const description = this.extractMetaDescription(doc);
+                const faviconUrl = this.extractFaviconUrl(doc, baseUrl);
+                const socialImages = this.extractSocialImages(doc, baseUrl);
+                const languageInfo = this.detectLanguage(doc);
+                const headings = this.extractHeadings(doc);
+
+                // Display results
+                this.displayResults({
+                    url: url,
+                    baseUrl: baseUrl,
+                    title: title,
+                    description: description,
+                    favicon: faviconUrl,
+                    socialImages: socialImages,
+                    language: languageInfo,
+                    headings: headings
+                });
+
+            } catch (error) {
+                this.displayError(`Error fetching link information: ${error.message}`);
+            }
+        }
+
+        extractMetaDescription(doc) {
+            const metaDescription = doc.querySelector('meta[name="description"]');
+            return metaDescription && metaDescription.content || 'No description found';
+        }
+
+        extractFaviconUrl(doc, baseUrl) {
+            const faviconLinks = doc.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
+            let faviconUrl = null;
+
+            faviconLinks.forEach((link) => {
+                if (link.href) {
+                    faviconUrl = new URL(link.href, baseUrl).href;
+                }
+            });
+
+            return faviconUrl || 'No favicon found';
+        }
+
+        extractSocialImages(doc, baseUrl) {
+            const socialImageMetaTags = doc.querySelectorAll('meta[property="og:image"], meta[name="twitter:image"]');
+            const socialImages = [];
+
+            socialImageMetaTags.forEach((metaTag) => {
+                if (metaTag.content) {
+                    socialImages.push(new URL(metaTag.content, baseUrl).href);
+                }
+            });
+
+            return socialImages.length ? socialImages : ['No social images found'];
+        }
+
+        detectLanguage(doc) {
+            const langAttribute = doc.querySelector('html').getAttribute('lang');
+            return langAttribute || 'Unknown language';
+        }
+
+        extractHeadings(doc) {
+            const headings = doc.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            const headingTexts = [];
+
+            headings.forEach((heading) => {
+                headingTexts.push(heading.textContent);
+            });
+
+            return headingTexts.length ? headingTexts : ['No headings found'];
+        }
+
+        displayResults(data) {
+            const resultsHtml = `
+                <h3>Link Information</h3>
+                <p>URL: ${data.url}</p>
+                <p>Base URL: ${data.baseUrl}</p>
+                <p>Title: ${data.title}</p>
+                <p>Description: ${data.description}</p>
+                <p>Favicon: ${data.favicon}</p>
+                <p>Social Images: ${data.socialImages.join(', ')}</p>
+                <p>Language: ${data.language}</p>
+                <p>Headings: ${data.headings.join(', ')}</p>
+            `;
+
+            this.resultsContainer.innerHTML = resultsHtml;
+        }
+
+        displayLoading(message) {
+            this.resultsContainer.innerHTML = `<p>${message}</p>`;
+        }
+
+        displayError(message) {
+            this.resultsContainer.innerHTML = `<p style="color: red;">${message}</p>`;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        new LinkInformationGetter();
+    });
+    </script>
+
+    <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -623,8 +1137,8 @@
     });
     </script>
 
-    <footer w-tid="241">
-        <p w-tid="243">© 2025 amdEX. All rights reserved.</p>
+    <footer>
+        <p>&copy; 2025 amdEX. All rights reserved.</p>
     </footer>
 </body>
 </html>
