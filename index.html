@@ -1,9 +1,12 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>amdEX</title>
-    <style>
+
+<!DOCTYPE html><html lang="en" w-tid="1">
+<head w-tid="3">
+    
+<title>AMDEX Hub</title>
+<meta charset="UTF-8" w-tid="5"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" w-tid="7"/>
+    <!--title>amdEX</title-->
+    <style w-tid="11">
     * {
         margin: 0;
         padding: 0;
@@ -106,7 +109,7 @@
         padding: 4rem 2rem;
     }
 
-    .about-section, .services-section, .donate-section, .error-templates-section {
+    .about-section, .services-section, .donate-section, .error-templates-section, .games-section {
         text-align: center;
         max-width: 1200px;
         margin: 0 auto;
@@ -279,6 +282,29 @@
         text-decoration: underline;
     }
 
+    .games-section {
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+    }
+
+    .iframe-container {
+        position: relative;
+        width: 100%;
+        margin-top: 2rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .iframe-container iframe {
+        border: none;
+        background-color: white;
+        width: 100%;
+        height: 600px;
+    }
+
     footer {
         background-color: #333;
         color: white;
@@ -315,119 +341,196 @@
         }
     }
     </style>
-    <link rel="icon" href="https://cdn.discordapp.com/attachments/1355613974682402888/1356740300336271411/amdex_3.png?ex=67edaa5e&is=67ec58de&hm=ff8e229b2948f23a388a0d829772d23fc84210d779f416756e654fc70bda76d6&" type="image/png">
+    <style w-tid="13">
+    .html-previewer-section {
+        background-color: #f9f9f9;
+        padding: 4rem 2rem;
+        text-align: left;
+    }
+
+    .previewer-container {
+        display: flex;
+        justify-content: flex-start;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .code-input-container, .preview-container {
+        width: 45%;
+        max-width: 600px;
+    }
+
+    .code-input-container textarea {
+        width: 100%;
+        height: 400px;
+    }
+
+    .preview-container iframe {
+        width: 100%;
+        height: 400px;
+        border: 1px solid #ddd;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .CodeMirror {
+        height: 400px !important;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        .previewer-container {
+            flex-direction: column;
+        }
+
+        .code-input-container, .preview-container {
+            width: 100%;
+        }
+    }
+    </style>
+    <link rel="icon" href="https://amdex-hub.vercel.app/cdn/img/favicon.png" type="image/png" w-tid="15"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css" w-tid="17"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css" w-tid="19"/>
 </head>
-<body>
-    <header>
-        <div class="logo-container">
-            <img src="https://media.discordapp.net/attachments/1355607066160664765/1356737983180701706/amdex_2.png?ex=67eda836&is=67ec56b6&hm=058ee104f4fd17089508a16dfdb0d875505b1b7788284e3bf051deb0f499868c&=&width=854&height=854" alt="amdEX Logo" class="logo">
-            <h1>amdEX</h1>
+<body w-tid="21">
+    <header w-tid="23">
+        <div class="logo-container" w-tid="25">
+            <img src="https://amdex-hub.vercel.app/cdn/img/logo1.png" alt="amdEX Logo" class="logo" w-tid="27"/>
+            <h1 w-tid="29">amdEX</h1>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#error-templates">Error Templates</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#donate">Donate</a></li>
+        <nav w-tid="31">
+            <ul w-tid="33">
+                <li w-tid="35"><a href="#home" w-tid="37">Home</a></li>
+                <li w-tid="39"><a href="#about" w-tid="41">About</a></li>
+                <li w-tid="43"><a href="#services" w-tid="45">Services</a></li>
+                <li w-tid="47"><a href="#error-templates" w-tid="49">Error Templates</a></li>
+                <li w-tid="51"><a href="#games" w-tid="53">Games</a></li>
+                <li w-tid="55"><a href="#contact" w-tid="57">Contact</a></li>
+                <li w-tid="59"><a href="#donate" w-tid="61">Donate</a></li>
+                <li w-tid="63"><a href="link-redirector.html" w-tid="65">Link Redirector</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h2>Welcome to amdEX</h2>
-                <p>Your trusted partner in innovative solutions</p>
-                <button class="cta-button">WELCOME</button>
+    <main w-tid="67">
+        <section id="home" class="hero" w-tid="69">
+            <div class="hero-content" w-tid="71">
+                <h2 w-tid="73">Welcome to amdEX</h2>
+                <p w-tid="75">Your trusted partner in innovative solutions</p>
+                <button class="cta-button" w-tid="77">WELCOME</button>
             </div>
         </section>
 
-        <section id="about" class="about-section">
-            <h2>About Us</h2>
-            <p>amdEX is a forward-thinking company dedicated to providing cutting-edge solutions for modern challenges.</p>
+        <section id="about" class="about-section" w-tid="79">
+            <h2 w-tid="81">About Us</h2>
+            <p w-tid="83">amdEX is a forward-thinking company dedicated to providing cutting-edge solutions for modern challenges.</p>
         </section>
 
-        <section id="services" class="services-section">
-            <h2>Our Services</h2>
-            <div class="service-cards">
-                <div class="service-card">
-                    <h3>Free Video Editing</h3>
-                    <p>Professional-quality video editing services at no cost to you. Our team uses industry-leading software to transform your raw footage into polished content.</p>
+        <section id="services" class="services-section" w-tid="85">
+            <h2 w-tid="87">Our Services</h2>
+            <div class="service-cards" w-tid="89">
+                <div class="service-card" w-tid="91">
+                    <h3 w-tid="93">Free Video Editing</h3>
+                    <p w-tid="95">Professional-quality video editing services at no cost to you. Our team uses industry-leading software to transform your raw footage into polished content.</p>
                 </div>
-                <div class="service-card">
-                    <h3>Fun</h3>
-                    <p>Inject creativity and entertainment into your videos. We specialize in adding engaging elements that captivate your audience and make your content memorable.</p>
+                <div class="service-card" w-tid="97">
+                    <h3 w-tid="99">Fun</h3>
+                    <p w-tid="101">Inject creativity and entertainment into your videos. We specialize in adding engaging elements that captivate your audience and make your content memorable.</p>
                 </div>
-                <div class="service-card">
-                    <h3>Great Videos</h3>
-                    <p>Deliver high-quality, finished videos that exceed expectations. From color grading to audio enhancement, we ensure your videos stand out from the competition.</p>
+                <div class="service-card" w-tid="103">
+                    <h3 w-tid="105">Great Videos</h3>
+                    <p w-tid="107">Deliver high-quality, finished videos that exceed expectations. From color grading to audio enhancement, we ensure your videos stand out from the competition.</p>
                 </div>
-                <div class="service-card">
-                    <h3>Completely FREE Error Page Templates</h3>
-                    <p>Access our extensive library of professionally designed error page templates at absolutely no cost. Enhance your website's user experience with stylish error pages for every HTTP status code.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="error-templates" class="error-templates-section">
-            <h2>Error Page Templates</h2>
-            <p>Browse our collection of free error page templates for your website.</p>
-            <div class="template-grid">
-                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Gateway_Error_2876578218747891278487125871251259129858126565872187654187624129491249812651105423.html" target="_blank" class="template-card">Bad Gateway Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Request_Error_19298485721876578786128756867218754129981281991192985127571235235.html" target="_blank" class="template-card">Bad Request Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Content_Too_Large_Error_786218674876`1287412768587612687568721576726157861285741287489284189218512412562167846712786521.html" target="_blank" class="template-card">Content Too Large Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Forbidden_Error_971865125678671687251252150091298478917895712576128762178487728914817567671256782178784167234676767412.html" target="_blank" class="template-card">Forbidden Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Gateway_Timeout_Error_567762587612785872186758612656127871248718764126558217421512521.html" target="_blank" class="template-card">Gateway Timeout Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Gone_Error_7817685761827865812786567812687512919285418517557667512989819898126561276581289498712984612675125214214.html" target="_blank" class="template-card">Gone Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Im_A_Teapot_Error_236452656712678587217587123657127547612786521.html" target="_blank" class="template-card">I'm A Teapot Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Internal_Server_Error_5376237676587876723567252878279157728127482677589909281984591872657712571.html" target="_blank" class="template-card">Internal Server Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Found_Error_6712768812576812568712919895887157176512497812457643276557126746512.html" target="_blank" class="template-card">Not Found Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Implemented_Error_23975328578128764587621657812765671284876128765172851865681286458762145.html" target="_blank" class="template-card">Not Implemented Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Service_Unavailable_Error_16788176268217651268756782195981256781651287558212152148718756821521.html" target="_blank" class="template-card">Service Unavailable Error</a>
-                <a href="https://amdex-hub.vercel.app/cdn/error/Too_Many_Requests_Error_2785782385776278586273675826877523687278352323523623.html" target="_blank" class="template-card">Too Many Requests Error</a>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section">
-            <h2>Contact Me</h2>
-            <p>Have questions or want to collaborate? Reach out through any of these channels.</p>
-            <div class="contact-info">
-                <div class="contact-card">
-                    <h3>Discord</h3>
-                    <p>Username: n1o8t</p>
-                    <p>Server: <a href="https://discord.gg/2vNTkdPtJy" target="_blank">Join our Discord</a></p>
-                </div>
-                <div class="contact-card">
-                    <h3>Email</h3>
-                    <p><a href="mailto:kurt3daybann@gmail.com">kurt3daybann@gmail.com</a></p>
-                </div>
-                <div class="contact-card">
-                    <h3>YouTube</h3>
-                    <p>Owner: <a href="https://youtube.com/@literallykutz" target="_blank">@literallykutz</a></p>
-                    <p>Business: <a href="https://youtube.com/@amd-ex" target="_blank">@amd-ex</a></p>
-                </div>
-                <div class="contact-card">
-                    <h3>Roblox</h3>
-                    <p>Username: AmdEX_Official</p>
-                    <p><a href="https://www.roblox.com/users/8249483517/profile" target="_blank">Visit Profile</a></p>
+                <div class="service-card" w-tid="109">
+                    <h3 w-tid="111">Completely FREE Error Page Templates</h3>
+                    <p w-tid="113">Access our extensive library of professionally designed error page templates at absolutely no cost. Enhance your website's user experience with stylish error pages for every HTTP status code.</p>
                 </div>
             </div>
         </section>
 
-        <section id="donate" class="donate-section">
-            <h2>Donate</h2>
-            <p>Support our mission to provide free video editing services to everyone.</p>
-            <button class="donate-button">Make a Donation</button>
+        <section id="error-templates" class="error-templates-section" w-tid="115">
+            <h2 w-tid="117">Error Page Templates</h2>
+            <p w-tid="119">Browse our collection of free error page templates for your website.</p>
+            <div class="template-grid" w-tid="121">
+                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Gateway_Error_2876578218747891278487125871251259129858126565872187654187624129491249812651105423.html" target="_blank" class="template-card" w-tid="123">Bad Gateway Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Bad_Request_Error_19298485721876578786128756867218754129981281991192985127571235235.html" target="_blank" class="template-card" w-tid="125">Bad Request Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Content_Too_Large_Error_786218674876`1287412768587612687568721576726157861285741287489284189218512412562167846712786521.html" target="_blank" class="template-card" w-tid="127">Content Too Large Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Forbidden_Error_971865125678671687251252150091298478917895712576128762178487728914817567671256782178784167234676767412.html" target="_blank" class="template-card" w-tid="129">Forbidden Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Gateway_Timeout_Error_567762587612785872186758612656127871248718764126558217421512521.html" target="_blank" class="template-card" w-tid="131">Gateway Timeout Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Gone_Error_7817685761827865812786567812687512919285418517557667512989819898126561276581289498712984612675125214214.html" target="_blank" class="template-card" w-tid="133">Gone Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Im_A_Teapot_Error_236452656712678587217587123657127547612786521.html" target="_blank" class="template-card" w-tid="135">I'm A Teapot Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Internal_Server_Error_5376237676587876723567252878279157728127482677589909281984591872657712571.html" target="_blank" class="template-card" w-tid="137">Internal Server Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Found_Error_6712768812576812568712919895887157176512497812457643276557126746512.html" target="_blank" class="template-card" w-tid="139">Not Found Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Not_Implemented_Error_23975328578128764587621657812765671284876128765172851865681286458762145.html" target="_blank" class="template-card" w-tid="141">Not Implemented Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Service_Unavailable_Error_16788176268217651268756782195981256781651287558212152148718756821521.html" target="_blank" class="template-card" w-tid="143">Service Unavailable Error</a>
+                <a href="https://amdex-hub.vercel.app/cdn/error/Too_Many_Requests_Error_2785782385776278586273675826877523687278352323523623.html" target="_blank" class="template-card" w-tid="145">Too Many Requests Error</a>
+            </div>
+        </section>
+
+        <section id="games" class="games-section" w-tid="147">
+            <h2 w-tid="149">Games</h2>
+            <p w-tid="151">Check out our collection of interactive games and projects.</p>
+            <div class="iframe-container" w-tid="153">
+                <a href="https://sites.google.com/view/proj-ccc/report-search-bugs/classroom-work-list" target="_blank" class="template-card" style="display: block; width: 100%; height: 100px; margin-top: 20px;" w-tid="155">
+                    Visit Our Games & Projects
+                </a>
+            </div>
+        </section>
+
+        <section id="html-previewer" class="html-previewer-section" w-tid="157">
+            <h2 w-tid="159">HTML Code Previewer</h2>
+            <p w-tid="161">Write HTML code and see it rendered in real-time!</p>
+            <div class="previewer-container" w-tid="163">
+                <div class="code-input-container" w-tid="165">
+                    <textarea id="html-code-input" placeholder="Enter your HTML code here..." w-tid="167"></textarea>
+                </div>
+                <div class="preview-container" w-tid="169">
+                    <iframe id="html-preview" frameborder="0" w-tid="171"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section" w-tid="173">
+            <h2 w-tid="175">Contact Me</h2>
+            <p w-tid="177">Have questions or want to collaborate? Reach out through any of these channels.</p>
+            <div class="contact-info" w-tid="179">
+                <div class="contact-card" w-tid="181">
+                    <h3 w-tid="183">Discord</h3>
+                    <p w-tid="185">Username: n1o8t</p>
+                    <p w-tid="187">Server: <a href="https://discord.gg/2vNTkdPtJy" target="_blank" w-tid="189">Join our Discord</a></p>
+                </div>
+                <div class="contact-card" w-tid="191">
+                    <h3 w-tid="193">Email</h3>
+                    <p w-tid="195"><a href="mailto:kurt3daybann@gmail.com" w-tid="197">kurt3daybann@gmail.com</a></p>
+                </div>
+                <div class="contact-card" w-tid="199">
+                    <h3 w-tid="201">YouTube</h3>
+                    <p w-tid="203">Owner: <a href="https://youtube.com/@literallykutz" target="_blank" w-tid="205">@literallykutz</a></p>
+                    <p w-tid="207">Business: <a href="https://youtube.com/@amd-ex" target="_blank" w-tid="209">@amd-ex</a></p>
+                </div>
+                <div class="contact-card" w-tid="211">
+                    <h3 w-tid="213">Roblox</h3>
+                    <p w-tid="215">Username: AmdEX_Official</p>
+                    <p w-tid="217"><a href="https://www.roblox.com/users/8249483517/profile" target="_blank" w-tid="219">Visit Profile</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="donate" class="donate-section" w-tid="221">
+            <h2 w-tid="223">Donate</h2>
+            <p w-tid="225">Support our mission to provide free video editing services to everyone.</p>
+            <button class="donate-button" w-tid="227">Make a Donation</button>
         </section>
     </main>
 
-    <footer>
-        <p>&copy; 2025 amdEX. All rights reserved.</p>
-    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js" w-tid="229"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js" w-tid="231"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js" w-tid="233"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js" w-tid="235"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js" w-tid="237"></script>
 
-    <script>
+    <script w-tid="239">
     document.addEventListener('DOMContentLoaded', function() {
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -477,7 +580,50 @@
                 window.location.href = 'https://amdex-hub.vercel.app/cdn/error/Donation_Error_178257876128851878177568721656786819129854828752176421768487612878712.html';
             });
         }
+
+        // HTML Previewer functionality
+        const htmlCodeInput = document.getElementById('html-code-input');
+        const htmlPreview = document.getElementById('html-preview');
+
+        // Initialize CodeMirror
+        const codeMirrorEditor = CodeMirror.fromTextArea(htmlCodeInput, {
+            mode: 'htmlmixed',
+            theme: 'monokai',
+            lineNumbers: true,
+            autoCloseTags: true,
+            matchBrackets: true
+        });
+
+        // Update preview on code change
+        codeMirrorEditor.on('change', function() {
+            const code = codeMirrorEditor.getValue();
+            htmlPreview.srcdoc = code || '<html><body><p>Your rendered HTML will appear here...</p></body></html>';
+        });
+
+        // Initial placeholder content
+        const initialCode = `
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .example { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Hello, HTML Previewer!</h1>
+    <p class="example">Start typing your HTML here.</p>
+</body>
+</html>
+        `.trim();
+
+        codeMirrorEditor.setValue(initialCode);
+        htmlPreview.srcdoc = initialCode;
     });
     </script>
+
+    <footer w-tid="241">
+        <p w-tid="243">© 2025 amdEX. All rights reserved.</p>
+    </footer>
 </body>
 </html>
