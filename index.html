@@ -69,6 +69,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+        position: relative;
     }
 
     .hero-content {
@@ -110,6 +111,15 @@
         text-align: center;
         max-width: 1200px;
         margin: 0 auto;
+    }
+
+    .music-player-section {
+        text-align: center;
+        max-width: 1200px;
+        margin: 4rem auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 4rem 2rem;
     }
 
     section h2 {
@@ -743,6 +753,61 @@
         text-align: center;
     }
 
+    .music-player-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    #music-upload {
+        margin-bottom: 20px;
+    }
+
+    .audio-controls {
+        width: 100%;
+    }
+
+    #music-audio {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .playlist-container {
+        width: 100%;
+        max-height: 300px;
+        overflow-y: auto;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+    }
+
+    #music-playlist {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    #music-playlist li {
+        padding: 10px;
+        background-color: #f5f5f5;
+        margin-bottom: 5px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #music-playlist li:hover {
+        background-color: #e0e0e0;
+    }
+
+    #music-playlist li.current-track {
+        background-color: #0066cc;
+        color: white;
+    }
+
     @media (max-width: 768px) {
         header {
             flex-direction: column;
@@ -779,8 +844,67 @@
             width: 100%;
         }
     }
+
+    .hero-background-controls {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #f9f9f9;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+    }
+
+    .background-options {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .background-mode-selector {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 20px;
+    }
+
+    .background-mode-settings > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    @keyframes rainbowBackground {
+        0% { background: linear-gradient(45deg, red, orange); }
+        25% { background: linear-gradient(45deg, orange, yellow); }
+        50% { background: linear-gradient(45deg, yellow, green); }
+        75% { background: linear-gradient(45deg, green, blue); }
+        100% { background: linear-gradient(45deg, blue, purple); }
+    }
+
+    .hero.rainbow-mode {
+        animation: rainbowBackground 10s ease infinite;
+        background-size: 400% 400%;
+        background-position: 0% 50%;
+    }
+
+    .background-mode-selector label {
+        color: black;
+        display: flex;
+        align-items: center;
+        margin: 0 10px;
+    }
+
+    .background-mode-selector label input {
+        margin-right: 5px;
+    }
     </style>
     <link rel="icon" href="https://amdex-hub.vercel.app/cdn/img/favicon.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
 </head>
@@ -813,6 +937,52 @@
                 <h2>Welcome to amdEX</h2>
                 <p>Your trusted partner in innovative solutions</p>
                 <button class="cta-button">WELCOME</button>
+            </div>
+            <div class="hero-background-controls">
+                <div class="background-options">
+                    <h3>Background Options</h3>
+                    <div class="background-mode-selector">
+                        <label>
+                            <input type="radio" name="background-mode" value="color" checked>
+                            Solid Color
+                        </label>
+                        <label>
+                            <input type="radio" name="background-mode" value="image">
+                            Custom Image
+                        </label>
+                        <label>
+                            <input type="radio" name="background-mode" value="rainbow">
+                            Rainbow Mode
+                        </label>
+                    </div>
+
+                    <div class="background-mode-settings">
+                        <!-- Color Mode Settings -->
+                        <div class="color-mode-settings">
+                            <input type="color" id="hero-background-color" value="#0066cc">
+                            <label for="hero-background-color">Choose Background Color</label>
+                        </div>
+
+                        <!-- Image Mode Settings -->
+                        <div class="image-mode-settings" style="display:none;">
+                            <input type="file" id="hero-background-image" accept="image/*">
+                            <label for="hero-background-image">Upload Background Image</label>
+                            <select id="image-fit-mode">
+                                <option value="cover">Cover</option>
+                                <option value="contain">Contain</option>
+                                <option value="stretch">Stretch</option>
+                            </select>
+                        </div>
+
+                        <!-- Rainbow Mode Settings -->
+                        <div class="rainbow-mode-settings" style="display:none;">
+                            <label>
+                                Rainbow Speed:
+                                <input type="range" id="rainbow-speed" min="1" max="10" value="5">
+                            </label>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -853,6 +1023,10 @@
                     <p>Discover an exciting collection of free games to enjoy. Click below to access our curated list of entertaining games that provide hours of fun without any cost.</p>
                     <a href="https://drive.google.com/file/d/1GET6z1A4K33cmNECs1gNfBI5YZe0gGV0/view" target="_blank" class="cta-button" style="display: inline-block; margin-top: 10px;">View Games List</a>
                 </div>
+                <div class="service-card">
+                    <h3>FREE Music Testing/Player</h3>
+                    <p>Enjoy our free music player where you can upload and listen to your favorite tracks without any hassle. Simple, intuitive, and completely free!</p>
+                </div>
             </div>
         </section>
 
@@ -872,6 +1046,21 @@
                 <a href="https://amdex-hub.vercel.app/cdn/error/Not_Implemented_Error_23975328578128764587621657812765671284876128765172851865681286458762145.html" target="_blank" class="template-card">Not Implemented Error</a>
                 <a href="https://amdex-hub.vercel.app/cdn/error/Service_Unavailable_Error_16788176268217651268756782195981256781651287558212152148718756821521.html" target="_blank" class="template-card">Service Unavailable Error</a>
                 <a href="https://amdex-hub.vercel.app/cdn/error/Too_Many_Requests_Error_2785782385776278586273675826877523687278352323523623.html" target="_blank" class="template-card">Too Many Requests Error</a>
+            </div>
+        </section>
+
+        <section id="music-player" class="music-player-section">
+            <h2>Music Player</h2>
+            <p>Upload and enjoy your music tracks for free!</p>
+            <div class="music-player-container">
+                <input type="file" id="music-upload" accept="audio/*" />
+                <div class="audio-controls">
+                    <audio id="music-audio" controls></audio>
+                </div>
+                <div class="playlist-container">
+                    <h3>Playlist</h3>
+                    <ul id="music-playlist"></ul>
+                </div>
             </div>
         </section>
 
@@ -1035,258 +1224,71 @@
         </section>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
-
     <script>
-    // HTMLPreviewerErrorLogger class
-    class HTMLPreviewerErrorLogger {
-        constructor() {
-            this.errorLog = [];
-            this.updateListeners = [];
-            this.setupGlobalErrorCapture();
-        }
+    document.addEventListener('DOMContentLoaded', function() {
+        const musicUpload = document.getElementById('music-upload');
+        const musicAudio = document.getElementById('music-audio');
+        const musicPlaylist = document.getElementById('music-playlist');
 
-        addUpdateListener(listener) {
-            this.updateListeners.push(listener);
-        }
+        const uploadedTracks = [];
 
-        notifyUpdateListeners() {
-            this.updateListeners.forEach(listener => listener(this.errorLog));
-        }
-
-        logError(errorInfo) {
-            this.errorLog.unshift(errorInfo);
-            this.errorLog = this.errorLog.slice(0, 50);
-            this.notifyUpdateListeners();
-        }
-
-        clearErrorLog() {
-            this.errorLog = [];
-            this.notifyUpdateListeners();
-        }
-
-        setupGlobalErrorCapture() {
-            window.addEventListener('error', (event) => {
-                this.logError({
-                    type: 'Global Error',
-                    message: event.message,
-                    source: event.filename,
-                    line: event.lineno,
-                    column: event.colno,
-                    timestamp: new Date().toLocaleString()
-                });
-            });
-
-            const originalConsoleError = console.error;
-            const originalConsoleLog = console.log;
-            const originalConsoleWarn = console.warn;
-
-            console.error = (...args) => {
-                this.logError({
-                    type: 'Console Error',
-                    message: args.map(arg => String(arg)).join(' '),
-                    timestamp: new Date().toLocaleString()
-                });
-                originalConsoleError.apply(console, args);
-            };
-
-            console.log = (...args) => {
-                this.logError({
-                    type: 'Console Log',
-                    message: args.map(arg => String(arg)).join(' '),
-                    timestamp: new Date().toLocaleString()
-                });
-                originalConsoleLog.apply(console, args);
-            };
-
-            console.warn = (...args) => {
-                this.logError({
-                    type: 'Console Warn',
-                    message: args.map(arg => String(arg)).join(' '),
-                    timestamp: new Date().toLocaleString()
-                });
-                originalConsoleWarn.apply(console, args);
-            };
-        }
-
-        setupErrorCapture(codeMirrorEditor, htmlPreview) {
-            if (!htmlPreview) {
-                console.error('HTML Preview iframe not found');
-                return;
+        musicUpload.addEventListener('change', function(event) {
+            const files = event.target.files;
+            
+            for (let file of files) {
+                if (file.type.startsWith('audio/')) {
+                    const trackURL = URL.createObjectURL(file);
+                    
+                    const listItem = document.createElement('li');
+                    listItem.textContent = file.name;
+                    listItem.dataset.url = trackURL;
+                    
+                    listItem.addEventListener('click', function() {
+                        // Stop current track if playing
+                        musicAudio.pause();
+                        
+                        // Set new track source
+                        musicAudio.src = this.dataset.url;
+                        
+                        // Play new track
+                        musicAudio.play();
+                        
+                        // Remove 'current-track' from all items
+                        const playlistItems = musicPlaylist.children;
+                        Array.from(playlistItems).forEach(item => item.classList.remove('current-track'));
+                        
+                        // Add 'current-track' to clicked item
+                        this.classList.add('current-track');
+                    });
+                    
+                    musicPlaylist.appendChild(listItem);
+                    uploadedTracks.push({
+                        name: file.name,
+                        url: trackURL
+                    });
+                } else {
+                    alert(`${file.name} is not a valid audio file.`);
+                }
             }
 
-            htmlPreview.addEventListener('load', () => {
-                try {
-                    const previewDocument = htmlPreview.contentDocument;
-                    if (previewDocument) {
-                        previewDocument.addEventListener('error', (event) => {
-                            this.logError({
-                                type: 'Resource Load Error',
-                                message: `Failed to load resource: ${event.target.src || event.target.href}`,
-                                timestamp: new Date().toLocaleString()
-                            });
-                        }, true);
-                    }
-                } catch (e) {
-                    this.logError({
-                        type: 'Security Error',
-                        message: 'Unable to access iframe content due to security restrictions',
-                        timestamp: new Date().toLocaleString()
-                    });
-                }
-            });
+            if (uploadedTracks.length === 1) {
+                musicAudio.src = uploadedTracks[0].url;
+            }
+        });
 
-            codeMirrorEditor.on('change', () => {
-                try {
-                    const code = codeMirrorEditor.getValue();
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(code, 'text/html');
-                    const parseErrors = doc.querySelector('parsererror');
-                    
-                    if (parseErrors) {
-                        this.logError({
-                            type: 'HTML Parsing Error',
-                            message: parseErrors.textContent,
-                            timestamp: new Date().toLocaleString()
-                        });
-                    }
-                } catch (error) {
-                    this.logError({
-                        type: 'Parsing Error',
-                        message: error.message,
-                        timestamp: new Date().toLocaleString()
-                    });
-                }
-            });
-        }
-    }
-
-    // HTMLPreviewerErrorDisplay class
-    class HTMLPreviewerErrorDisplay {
-        constructor(errorLogger) {
-            this.errorLogger = errorLogger;
-            this.createErrorDisplayContainer();
-        }
-
-        createErrorDisplayContainer() {
-            const errorDisplayContainer = document.createElement('div');
-            errorDisplayContainer.id = 'error-display-container';
-            errorDisplayContainer.classList.add('error-display-container');
+        musicAudio.addEventListener('ended', function() {
+            const currentTrackIndex = uploadedTracks.findIndex(track => track.url === musicAudio.src);
+            const nextTrackIndex = (currentTrackIndex + 1) % uploadedTracks.length;
             
-            errorDisplayContainer.innerHTML = `
-                <div class="error-display-header">
-                    <h3>Error Log</h3>
-                </div>
-                <div class="error-display-content">
-                    <div id="error-log-entries" class="error-log-entries"></div>
-                    <div class="error-display-actions">
-                        <button class="error-display-clear">Clear Log</button>
-                    </div>
-                </div>
-            `;
-
-            const style = document.createElement('style');
-            style.textContent = `
-                .error-display-container {
-                    position: fixed;
-                    right: 20px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    width: 300px;
-                    background-color: white;
-                    border: 2px solid #0066cc;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                    z-index: 1000;
-                    transition: all 0.3s ease;
-                }
-
-                .error-display-header {
-                    padding: 10px;
-                    background-color: #f0f0f0;
-                    border-top-left-radius: 6px;
-                    border-top-right-radius: 6px;
-                }
-
-                .error-display-content {
-                    max-height: 400px;
-                    overflow-y: auto;
-                    padding: 10px;
-                }
-
-                .error-log-entries {
-                    max-height: 350px;
-                    overflow-y: auto;
-                }
-
-                .error-log-entry {
-                    background-color: #f9f9f9;
-                    margin-bottom: 10px;
-                    padding: 10px;
-                    border-left: 4px solid #ff4136;
-                    border-radius: 4px;
-                }
-
-                .error-display-actions {
-                    text-align: center;
-                    margin-top: 10px;
-                }
-
-                .error-display-clear {
-                    background-color: #0066cc;
-                    color: white;
-                    border: none;
-                    padding: 8px 16px;
-                    border-radius: 4px;
-                    cursor: pointer;
-                }
-            `;
-
-            document.body.appendChild(errorDisplayContainer);
-            document.head.appendChild(style);
-
-            this.setupEventListeners();
-        }
-
-        setupEventListeners() {
-            const container = document.getElementById('error-display-container');
-            const clearBtn = container.querySelector('.error-display-clear');
-
-            clearBtn.addEventListener('click', () => {
-                this.errorLogger.clearErrorLog();
-            });
-
-            this.errorLogger.addUpdateListener(this.updateErrorDisplay.bind(this));
-        }
-
-        updateErrorDisplay(errorLog) {
-            const entriesContainer = document.getElementById('error-log-entries');
-            entriesContainer.innerHTML = errorLog.map(error => `
-                <div class="error-log-entry">
-                    <strong>${error.type}</strong>
-                    <p>${error.message}</p>
-                    ${error.source ? `<small>Source: ${error.source}:${error.line}:${error.column}</small>` : ''}
-                    <small>${error.timestamp}</small>
-                </div>
-            `).join('') || '<p>No errors logged.</p>';
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        const htmlPreview = document.getElementById('html-preview');
-        const codeMirrorElement = document.querySelector('.CodeMirror');
-
-        if (codeMirrorElement && codeMirrorElement.CodeMirror && htmlPreview) {
-            const codeMirrorEditor = codeMirrorElement.CodeMirror;
-            const errorLogger = new HTMLPreviewerErrorLogger();
-            const errorDisplay = new HTMLPreviewerErrorDisplay(errorLogger);
-
-            errorLogger.setupErrorCapture(codeMirrorEditor, htmlPreview);
-        }
+            if (uploadedTracks.length > 0) {
+                musicAudio.src = uploadedTracks[nextTrackIndex].url;
+                musicAudio.play();
+                
+                const playlistItems = musicPlaylist.children;
+                Array.from(playlistItems).forEach(item => item.classList.remove('current-track'));
+                playlistItems[nextTrackIndex].classList.add('current-track');
+            }
+        });
     });
     </script>
 
@@ -1442,8 +1444,6 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // ... existing functions ...
-
         // Enable Weather functionality
         const enableWeatherBtn = document.getElementById('enable-weather');
         const weatherResult = document.getElementById('weather-result');
@@ -1741,8 +1741,6 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // ... existing code ...
-
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -1830,6 +1828,80 @@
 
         codeMirrorEditor.setValue(initialCode);
         htmlPreview.srcdoc = initialCode;
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hero = document.querySelector('.hero');
+        const backgroundModeRadios = document.querySelectorAll('input[name="background-mode"]');
+        const colorInput = document.getElementById('hero-background-color');
+        const imageInput = document.getElementById('hero-background-image');
+        const imageFitMode = document.getElementById('image-fit-mode');
+        const rainbowSpeedInput = document.getElementById('rainbow-speed');
+
+        const modeSettings = {
+            color: document.querySelector('.color-mode-settings'),
+            image: document.querySelector('.image-mode-settings'),
+            rainbow: document.querySelector('.rainbow-mode-settings')
+        };
+
+        function updateBackgroundMode() {
+            const selectedMode = document.querySelector('input[name="background-mode"]:checked').value;
+
+            // Hide all settings
+            Object.values(modeSettings).forEach(setting => setting.style.display = 'none');
+            
+            // Show selected mode settings
+            modeSettings[selectedMode].style.display = 'flex';
+
+            // Reset hero background
+            hero.style.background = '';
+            hero.style.backgroundColor = '';
+            hero.style.backgroundImage = '';
+            hero.classList.remove('rainbow-mode');
+
+            switch(selectedMode) {
+                case 'color':
+                    // Ensure the color is applied correctly
+                    hero.style.background = colorInput.value;
+                    hero.style.backgroundColor = colorInput.value;
+                    break;
+                case 'image':
+                    if (imageInput.files.length > 0) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            hero.style.backgroundImage = `url(${e.target.result})`;
+                            hero.style.backgroundSize = imageFitMode.value;
+                            hero.style.backgroundPosition = 'center';
+                            hero.style.backgroundRepeat = 'no-repeat';
+                        };
+                        reader.readAsDataURL(imageInput.files[0]);
+                    }
+                    break;
+                case 'rainbow':
+                    hero.classList.add('rainbow-mode');
+                    const animationDuration = 11 - rainbowSpeedInput.value;
+                    hero.style.animationDuration = `${animationDuration}s`;
+                    break;
+            }
+        }
+
+        // Add event listeners
+        backgroundModeRadios.forEach(radio => {
+            radio.addEventListener('change', updateBackgroundMode);
+        });
+
+        colorInput.addEventListener('input', updateBackgroundMode);
+        
+        imageInput.addEventListener('change', updateBackgroundMode);
+        
+        imageFitMode.addEventListener('change', updateBackgroundMode);
+        
+        rainbowSpeedInput.addEventListener('input', updateBackgroundMode);
+
+        // Initial setup
+        updateBackgroundMode();
     });
     </script>
 
