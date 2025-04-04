@@ -106,7 +106,7 @@
         padding: 4rem 2rem;
     }
 
-    .about-section, .services-section, .donate-section, .error-templates-section, .games-section, .link-info-section {
+    .about-section, .services-section, .donate-section, .error-templates-section, .games-section, .link-info-section, .weather-section, .location-section, .tools-section, .multiplayer-games-section {
         text-align: center;
         max-width: 1200px;
         margin: 0 auto;
@@ -459,6 +459,290 @@
         cursor: pointer;
     }
 
+    .weather-section {
+        text-align: center;
+        max-width: 1200px;
+        margin: 4rem auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 4rem 2rem;
+    }
+
+    .weather-button {
+        padding: 1rem 2.5rem;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .weather-button:hover {
+        background-color: #004c99;
+        transform: scale(1.05);
+    }
+
+    .weather-result {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+
+    .weather-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .weather-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .weather-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+
+    .weather-data-item {
+        width: 48%;
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+    }
+
+    .location-section {
+        text-align: center;
+        max-width: 1200px;
+        margin: 4rem auto;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 4rem 2rem;
+    }
+
+    .location-button {
+        padding: 1rem 2.5rem;
+        background-color: #0066cc;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .location-button:hover {
+        background-color: #004c99;
+        transform: scale(1.05);
+    }
+
+    .location-result {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: left;
+    }
+
+    .location-map {
+        width: 100%;
+        height: 300px;
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+
+    .location-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+
+    .location-data-item {
+        width: 48%;
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        background-color: #f5f5f5;
+        border-radius: 4px;
+    }
+
+    .tools-section {
+        text-align: center;
+        max-width: 1200px;
+        margin: 4rem auto;
+        padding: 4rem 2rem;
+    }
+
+    .tools-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .tool-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        width: 100%;
+        max-width: 500px;
+        transition: transform 0.3s ease;
+    }
+
+    .tool-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .calculator-container {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .calculator-display {
+        width: 100%;
+        height: 60px;
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        text-align: right;
+        padding: 10px;
+    }
+
+    .calculator-buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+    }
+
+    .calculator-button {
+        padding: 15px;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 18px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .calculator-button:hover {
+        background-color: #e0e0e0;
+    }
+
+    .calculator-button.operator {
+        background-color: #0066cc;
+        color: white;
+    }
+
+    .calculator-button.equals {
+        background-color: #0066cc;
+        color: white;
+        grid-column: span 2;
+    }
+
+    .converter-container {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .converter-input {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .converter-input input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px 0 0 4px;
+        font-size: 16px;
+    }
+
+    .converter-input select {
+        width: 120px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-left: none;
+        border-radius: 0 4px 4px 0;
+        background-color: #f5f5f5;
+        font-size: 16px;
+    }
+
+    .conversion-results {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 15px;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .conversion-result {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .color-picker-container {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .color-picker-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .color-slider {
+        width: 100%;
+    }
+
+    .color-preview {
+        width: 100%;
+        height: 100px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 15px;
+    }
+
+    .color-values {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .color-value {
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 10px;
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+
     @media (max-width: 768px) {
         header {
             flex-direction: column;
@@ -513,6 +797,9 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#error-templates">Error Templates</a></li>
                 <li><a href="#games">Games</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#weather">Weather</a></li>
+                <li><a href="#location">Location</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#donate">Donate</a></li>
                 <li><a href="link-redirector.html">Link Redirector</a></li>
@@ -552,6 +839,19 @@
                 <div class="service-card">
                     <h3>Completely FREE Error Page Templates</h3>
                     <p>Access our extensive library of professionally designed error page templates at absolutely no cost. Enhance your website's user experience with stylish error pages for every HTTP status code.</p>
+                </div>
+                <div class="service-card">
+                    <h3>FREE On-Website Tools</h3>
+                    <p>Explore a collection of powerful, completely free tools directly on our website. From calculators and converters to color pickers and link analyzers, enhance your productivity without any cost.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Always Happy to Help</h3>
+                    <p>Our dedicated team is committed to providing exceptional support and guidance. Whether you have questions, need advice, or seek creative solutions, we're here to assist you every step of the way.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Links to Games for Completely FREE!</h3>
+                    <p>Discover an exciting collection of free games to enjoy. Click below to access our curated list of entertaining games that provide hours of fun without any cost.</p>
+                    <a href="https://drive.google.com/file/d/1GET6z1A4K33cmNECs1gNfBI5YZe0gGV0/view" target="_blank" class="cta-button" style="display: inline-block; margin-top: 10px;">View Games List</a>
                 </div>
             </div>
         </section>
@@ -607,6 +907,87 @@
             </div>
         </section>
 
+        <section id="tools" class="tools-section">
+            <h2>Useful Tools</h2>
+            <p>A collection of handy tools to help with everyday tasks.</p>
+            
+            <div class="tools-container">
+                <!-- Calculator -->
+                <div class="tool-card">
+                    <h3>Calculator</h3>
+                    <p>A simple calculator for quick calculations.</p>
+                    <div class="calculator-container">
+                        <div id="calculator-display" class="calculator-display">0</div>
+                        <div class="calculator-buttons">
+                            <button class="calculator-button" data-action="clear">C</button>
+                            <button class="calculator-button" data-action="delete">DEL</button>
+                            <button class="calculator-button operator" data-action="operator">%</button>
+                            <button class="calculator-button operator" data-action="operator">/</button>
+                            <button class="calculator-button" data-digit="7">7</button>
+                            <button class="calculator-button" data-digit="8">8</button>
+                            <button class="calculator-button" data-digit="9">9</button>
+                            <button class="calculator-button operator" data-action="operator">*</button>
+                            <button class="calculator-button" data-digit="4">4</button>
+                            <button class="calculator-button" data-digit="5">5</button>
+                            <button class="calculator-button" data-digit="6">6</button>
+                            <button class="calculator-button operator" data-action="operator">-</button>
+                            <button class="calculator-button" data-digit="1">1</button>
+                            <button class="calculator-button" data-digit="2">2</button>
+                            <button class="calculator-button" data-digit="3">3</button>
+                            <button class="calculator-button operator" data-action="operator">+</button>
+                            <button class="calculator-button" data-digit="0">0</button>
+                            <button class="calculator-button" data-action="decimal">.</button>
+                            <button class="calculator-button equals" data-action="calculate">=</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Currency Converter -->
+                <div class="tool-card">
+                    <h3>Currency Converter</h3>
+                    <p>Convert between different currencies using real-time exchange rates.</p>
+                    <div class="converter-container">
+                        <div class="converter-input">
+                            <input type="number" id="currency-amount" placeholder="Amount" value="1">
+                            <select id="currency-from">
+                                <option value="USD">USD</option>
+                                <option value="EUR">EUR</option>
+                                <option value="GBP">GBP</option>
+                                <option value="JPY">JPY</option>
+                                <option value="CAD">CAD</option>
+                                <option value="AUD">AUD</option>
+                                <option value="CNY">CNY</option>
+                                <option value="INR">INR</option>
+                            </select>
+                        </div>
+                        <button id="convert-currency" class="cta-button" style="width: 100%; margin-bottom: 20px;">Convert</button>
+                        <div id="conversion-results" class="conversion-results">
+                            <p>Enter an amount and click Convert to see results.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color Picker -->
+                <div class="tool-card">
+                    <h3>Color Picker</h3>
+                    <p>Create and experiment with colors using RGB, HEX, and HSL values.</p>
+                    <div class="color-picker-container">
+                        <div class="color-preview" id="color-preview"></div>
+                        <div class="color-picker-controls">
+                            <label>Red: <input type="range" min="0" max="255" value="128" class="color-slider" id="red-slider"></label>
+                            <label>Green: <input type="range" min="0" max="255" value="128" class="color-slider" id="green-slider"></label>
+                            <label>Blue: <input type="range" min="0" max="255" value="128" class="color-slider" id="blue-slider"></label>
+                        </div>
+                        <div class="color-values">
+                            <div class="color-value" id="hex-value">#808080</div>
+                            <div class="color-value" id="rgb-value">rgb(128,128,128)</div>
+                            <div class="color-value" id="hsl-value">hsl(0,0%,50%)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="contact-section">
             <h2>Contact Me</h2>
             <p>Have questions or want to collaborate? Reach out through any of these channels.</p>
@@ -631,6 +1012,20 @@
                     <p><a href="https://www.roblox.com/users/8249483517/profile" target="_blank">Visit Profile</a></p>
                 </div>
             </div>
+        </section>
+
+        <section id="location" class="location-section">
+            <h2>Location Detector</h2>
+            <p>Find out your precise location coordinates and address information.</p>
+            <button id="enable-location" class="location-button">Enable Location Visibility</button>
+            <div id="location-result" class="location-result"></div>
+        </section>
+
+        <section id="weather" class="weather-section">
+            <h2>Weather</h2>
+            <p>Check the current weather for your location.</p>
+            <button id="enable-weather" class="weather-button">Enable Weather</button>
+            <div id="weather-result" class="weather-result"></div>
         </section>
 
         <section id="donate" class="donate-section">
@@ -1047,6 +1442,307 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // ... existing functions ...
+
+        // Enable Weather functionality
+        const enableWeatherBtn = document.getElementById('enable-weather');
+        const weatherResult = document.getElementById('weather-result');
+        
+        // Add null check for the button and result container
+        if (enableWeatherBtn && weatherResult) {
+            enableWeatherBtn.addEventListener('click', async function() {
+                if (weatherResult) {
+                    weatherResult.innerHTML = '<p>Fetching weather information...</p>';
+                }
+                
+                try {
+                    // Check if geolocation is supported
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(async (position) => {
+                            const { latitude, longitude } = position.coords;
+                            
+                            try {
+                                // Fetch weather data using OpenWeatherMap API
+                                const apiKey = 'f5cb0b965ea1564c50c6f1b74534d823'; 
+                                const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+                                
+                                const response = await fetch(weatherUrl);
+                                const data = await response.json();
+                                
+                                // Add more robust error checking
+                                if (response.ok && data && data.main && data.weather && data.sys) {
+                                    // Process weather data
+                                    const location = data.name || 'Unknown Location';
+                                    const country = data.sys.country || 'Unknown';
+                                    const weatherMain = data.weather[0]?.main || 'Unknown';
+                                    const weatherDesc = data.weather[0]?.description || 'No description';
+                                    const temperature = data.main.temp || 'N/A';
+                                    const feelsLike = data.main.feels_like || 'N/A';
+                                    const humidity = data.main.humidity || 'N/A';
+                                    const windSpeed = data.wind?.speed || 'N/A';
+                                    const pressure = data.main.pressure || 'N/A';
+                                    const visibility = (data.visibility || 0) / 1000; // Convert to km
+                                    const weatherIcon = data.weather[0]?.icon 
+                                        ? `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
+                                        : '';
+                                    
+                                    // Safely set innerHTML
+                                    if (weatherResult) {
+                                        weatherResult.innerHTML = `
+                                            <div class="weather-info">
+                                                <div>
+                                                    <h3>${location}, ${country}</h3>
+                                                    <h4>${weatherMain} - ${weatherDesc}</h4>
+                                                    <p>Temperature: ${temperature}°C (Feels like: ${feelsLike}°C)</p>
+                                                </div>
+                                                ${weatherIcon ? `<img src="${weatherIcon}" alt="${weatherDesc}" class="weather-icon">` : ''}
+                                            </div>
+                                            <div class="weather-data">
+                                                <div class="weather-data-item">
+                                                    <strong>Humidity:</strong> ${humidity}%
+                                                </div>
+                                                <div class="weather-data-item">
+                                                    <strong>Wind Speed:</strong> ${windSpeed} m/s
+                                                </div>
+                                                <div class="weather-data-item">
+                                                    <strong>Pressure:</strong> ${pressure} hPa
+                                                </div>
+                                                <div class="weather-data-item">
+                                                    <strong>Visibility:</strong> ${visibility} km
+                                                </div>
+                                            </div>
+                                        `;
+                                    }
+                                } else {
+                                    // Handle API response errors
+                                    if (weatherResult) {
+                                        weatherResult.innerHTML = `
+                                            <p style="color: red;">Error: Unable to fetch weather data</p>
+                                            <p>The weather service may be experiencing issues.</p>
+                                            <p>Response status: ${response.status}</p>
+                                        `;
+                                    }
+                                }
+                            } catch (error) {
+                                // Improved error handling
+                                if (weatherResult) {
+                                    weatherResult.innerHTML = `
+                                        <p style="color: red;">Error fetching weather data: ${error.message}</p>
+                                        <p>Possible reasons:
+                                            <ul>
+                                                <li>Network connection issue</li>
+                                                <li>API service down</li>
+                                                <li>Incorrect API key</li>
+                                            </ul>
+                                        </p>
+                                    `;
+                                }
+                                console.error('Weather fetch error:', error);
+                            }
+                        }, (error) => {
+                            // Geolocation error handling
+                            if (weatherResult) {
+                                weatherResult.innerHTML = `
+                                    <p style="color: red;">Location Error: ${error.message}</p>
+                                    <p>Please ensure:
+                                        <ul>
+                                            <li>Location services are enabled</li>
+                                            <li>You've granted location permissions</li>
+                                            <li>Your device supports geolocation</li>
+                                        </ul>
+                                    </p>
+                                `;
+                            }
+                        });
+                    } else {
+                        // Geolocation not supported
+                        if (weatherResult) {
+                            weatherResult.innerHTML = `
+                                <p style="color: red;">Geolocation is not supported by this browser.</p>
+                                <p>Please try a modern browser with geolocation support.</p>
+                            `;
+                        }
+                    }
+                } catch (globalError) {
+                    // Catch any global errors
+                    if (weatherResult) {
+                        weatherResult.innerHTML = `
+                            <p style="color: red;">Unexpected error: ${globalError.message}</p>
+                            <p>An unexpected error occurred while fetching weather data.</p>
+                        `;
+                    }
+                    console.error('Global weather error:', globalError);
+                }
+            });
+        } else {
+            console.warn('Weather button or result container not found');
+        }
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const enableLocationBtn = document.getElementById('enable-location');
+        const locationResult = document.getElementById('location-result');
+        
+        enableLocationBtn.addEventListener('click', function() {
+            locationResult.innerHTML = '<p>Fetching location information...</p>';
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const { latitude, longitude } = position.coords;
+                    
+                    try {
+                        // Get detailed location data using reverse geocoding
+                        const geocodeUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`;
+                        
+                        const response = await fetch(geocodeUrl, {
+                            headers: {
+                                'Accept-Language': 'en-US,en',
+                                'User-Agent': 'Mozilla/5.0 (AmdEX Location Detector)'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            const data = await response.json();
+                            
+                            // Get location accuracy in meters
+                            const accuracy = position.coords.accuracy;
+                            // Get altitude if available
+                            const altitude = position.coords.altitude ? `${position.coords.altitude.toFixed(2)} meters` : 'Not available';
+                            // Get speed if available
+                            const speed = position.coords.speed ? `${position.coords.speed.toFixed(2)} m/s` : 'Not available';
+                            // Get heading if available
+                            const heading = position.coords.heading ? `${position.coords.heading.toFixed(2)}°` : 'Not available';
+                            // Get timestamp
+                            const timestamp = new Date(position.timestamp).toLocaleString();
+                            
+                            // Format address from OpenStreetMap data
+                            const address = data.display_name || 'Address information not available';
+                            
+                            // Create HTML with detailed location information
+                            let locationHTML = `
+                                <h3>Your Location Information</h3>
+                                <div class="location-data">
+                                    <div class="location-data-item">
+                                        <strong>Latitude:</strong> ${latitude.toFixed(6)}
+                                    </div>
+                                    <div class="location-data-item">
+                                        <strong>Longitude:</strong> ${longitude.toFixed(6)}
+                                    </div>
+                                    <div class="location-data-item">
+                                        <strong>Accuracy:</strong> ${accuracy.toFixed(2)} meters
+                                    </div>
+                                    <div class="location-data-item">
+                                        <strong>Altitude:</strong> ${altitude}
+                                    </div>
+                                    <div class="location-data-item">
+                                        <strong>Speed:</strong> ${speed}
+                                    </div>
+                                    <div class="location-data-item">
+                                        <strong>Heading:</strong> ${heading}
+                                    </div>
+                                    <div class="location-data-item">
+                                        <strong>Timestamp:</strong> ${timestamp}
+                                    </div>
+                                </div>
+                                <h4>Address Information:</h4>
+                                <p>${address}</p>
+                            `;
+                            
+                            // Add detailed address components if available
+                            if (data.address) {
+                                const addr = data.address;
+                                locationHTML += `
+                                    <div class="location-data">
+                                        ${addr.building ? `<div class="location-data-item"><strong>Building:</strong> ${addr.building}</div>` : ''}
+                                        ${addr.house_number ? `<div class="location-data-item"><strong>House Number:</strong> ${addr.house_number}</div>` : ''}
+                                        ${addr.road ? `<div class="location-data-item"><strong>Street:</strong> ${addr.road}</div>` : ''}
+                                        ${addr.suburb ? `<div class="location-data-item"><strong>Suburb:</strong> ${addr.suburb}</div>` : ''}
+                                        ${addr.city || addr.town ? `<div class="location-data-item"><strong>City/Town:</strong> ${addr.city || addr.town}</div>` : ''}
+                                        ${addr.county ? `<div class="location-data-item"><strong>County:</strong> ${addr.county}</div>` : ''}
+                                        ${addr.state ? `<div class="location-data-item"><strong>State:</strong> ${addr.state}</div>` : ''}
+                                        ${addr.postcode ? `<div class="location-data-item"><strong>Postal Code:</strong> ${addr.postcode}</div>` : ''}
+                                        ${addr.country ? `<div class="location-data-item"><strong>Country:</strong> ${addr.country}</div>` : ''}
+                                    </div>
+                                `;
+                            }
+                            
+                            // Add OpenStreetMap for visualization
+                            locationHTML += `
+                                <h4>Location Map:</h4>
+                                <iframe class="location-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.01}%2C${latitude-0.01}%2C${longitude+0.01}%2C${latitude+0.01}&amp;layer=mapnik&amp;marker=${latitude}%2C${longitude}" 
+                                style="border: 1px solid black"></iframe>
+                                <br/>
+                                <small><a href="https://www.openstreetmap.org/?mlat=${latitude}&amp;mlon=${longitude}" target="_blank">View Larger Map</a></small>
+                            `;
+                            
+                            locationResult.innerHTML = locationHTML;
+                        } else {
+                            locationResult.innerHTML = `
+                                <p style="color: red;">Error: ${data.message || 'Failed to fetch location details'}</p>
+                                <div class="location-data">
+                                    <div class="location-data-item">
+                                        <strong>Latitude:</strong> ${latitude.toFixed(6)}
+                                    </div>
+                                    <div class="location-data-item">
+                                        <strong>Longitude:</strong> ${longitude.toFixed(6)}
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    } catch (error) {
+                        locationResult.innerHTML = `
+                            <p style="color: red;">Error fetching location details: ${error.message}</p>
+                            <p>Basic location information:</p>
+                            <div class="location-data">
+                                <div class="location-data-item">
+                                    <strong>Latitude:</strong> ${latitude.toFixed(6)}
+                                </div>
+                                <div class="location-data-item">
+                                    <strong>Longitude:</strong> ${longitude.toFixed(6)}
+                                </div>
+                            </div>
+                            <iframe class="location-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+                            src="https://www.openstreetmap.org/export/embed.html?bbox=${longitude-0.01}%2C${latitude-0.01}%2C${longitude+0.01}%2C${latitude+0.01}&amp;layer=mapnik&amp;marker=${latitude}%2C${longitude}" 
+                            style="border: 1px solid black"></iframe>
+                        `;
+                    }
+                }, (error) => {
+                    let errorMessage = 'Unknown error occurred';
+                    
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage = 'User denied the request for geolocation.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage = 'Location information is unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage = 'The request to get user location timed out.';
+                            break;
+                    }
+                    
+                    locationResult.innerHTML = `
+                        <p style="color: red;">Error getting location: ${errorMessage}</p>
+                        <p>Please allow location access to use this feature. Check your browser settings to enable location services.</p>
+                    `;
+                });
+            } else {
+                locationResult.innerHTML = `
+                    <p style="color: red;">Error: Geolocation is not supported by this browser.</p>
+                    <p>Please try using a modern browser that supports location services.</p>
+                `;
+            }
+        });
+    });
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // ... existing code ...
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
