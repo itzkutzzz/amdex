@@ -1905,6 +1905,244 @@
     });
     </script>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Calculator Functionality
+        const calculatorDisplay = document.getElementById('calculator-display');
+        const calculatorButtons = document.querySelectorAll('.calculator-button');
+        
+        let displayValue = '0';
+        let firstOperand = null;
+        let waitingForSecondOperand = false;
+        let operator = null;
+        
+        function updateDisplay() {
+            calculatorDisplay.textContent = displayValue;
+        }
+        
+        function inputDigit(digit) {
+            if (waitingForSecondOperand) {
+                displayValue = digit;
+                waitingForSecondOperand = false;
+            } else {
+                displayValue = displayValue === '0' ? digit : displayValue + digit;
+            }
+        }
+        
+        function inputDecimal() {
+            if (waitingForSecondOperand) {
+                displayValue = '0.';
+                waitingForSecondOperand = false;
+                return;
+            }
+            
+            if (!displayValue.includes('.')) {
+                displayValue += '.';
+            }
+        }
+        
+        function handleOperator(nextOperator) {
+            const inputValue = parseFloat(displayValue);
+            
+            if (operator && waitingForSecondOperand) {
+                operator = nextOperator;
+                return;
+            }
+            
+            if (firstOperand === null) {
+                firstOperand = inputValue;
+            } else if (operator) {
+                const result = performCalculation();
+                displayValue = String(result);
+                firstOperand = result;
+            }
+            
+            waitingForSecondOperand = true;
+            operator = nextOperator;
+        }
+        
+        function performCalculation() {
+            const secondOperand = parseFloat(displayValue);
+            
+            switch(operator) {
+                case '+':
+                    return firstOperand + secondOperand;
+                case '-':
+                    return firstOperand - secondOperand;
+                case '*':
+                    return firstOperand * secondOperand;
+                case '/':
+                    return firstOperand / secondOperand;
+                case '%':
+                    return firstOperand % secondOperand;
+                default:
+                    return secondOperand;
+            }
+        }
+        
+        function resetCalculator() {
+            displayValue = '0';
+            firstOperand = null;
+            waitingForSecondOperand = false;
+            operator = null;
+        }
+        
+        calculatorButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Process digits
+                if (button.hasAttribute('data-digit')) {
+                    inputDigit(button.getAttribute('data-digit'));
+                    updateDisplay();
+                }
+                
+                // Process actions
+                if (button.hasAttribute('data-action')) {
+                    const action = button.getAttribute('data-action');
+                    
+                    switch(action) {
+                        case 'clear':
+                            resetCalculator();
+                            updateDisplay();
+                            break;
+                        case 'delete':
+                            displayValue = displayValue.slice(0, -1) || '0';
+                            updateDisplay();
+                            break;
+                        case 'decimal':
+                            inputDecimal();
+                            updateDisplay();
+                            break;
+                        case 'calculate':
+                            if (operator && !waitingForSecondOperand) {
+                                const result = performCalculation();
+                                displayValue = String(result);
+                                firstOperand = result;
+                                operator = null;
+                                waitingForSecondOperand = true;
+                                updateDisplay();
+                            }
+                            break;
+                        case 'operator':
+                            handleOperator(button.textContent);
+                            updateDisplay();
+                            break;
+                    }
+                }
+            });
+        });
+        
+        // Initialize the display
+        updateDisplay();
+        
+        // Color Picker Functionality
+        const redSlider = document.getElementById('red-slider');
+        const greenSlider = document.getElementById('green-slider');
+        const blueSlider = document.getElementById('blue-slider');
+        const colorPreview = document.getElementById('color-preview');
+        const hexValue = document.getElementById('hex-value');
+        const rgbValue = document.getElementById('rgb-value');
+        const hslValue = document.getElementById('hsl-value');
+        
+        function updateColorPicker() {
+            const red = parseInt(redSlider.value);
+            const green = parseInt(greenSlider.value);
+            const blue = parseInt(blueSlider.value);
+            
+            // Update preview
+            colorPreview.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+            
+            // Update HEX value
+            const hexColor = `#${red.toString(16).padStart(2, '0')}${green.toString(16).padStart(2, '0')}${blue.toString(16).padStart(2, '0')}`;
+            hexValue.textContent = hexColor;
+            
+            // Update RGB value
+            rgbValue.textContent = `rgb(${red}, ${green}, ${blue})`;
+            
+            // Update HSL value
+            const r = red / 255;
+            const g = green / 255;
+            const b = blue / 255;
+            
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0; // achromatic
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                
+                switch(max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                
+                h /= 6;
+            }
+            
+            h = Math.round(h * 360);
+            s = Math.round(s * 100);
+            l = Math.round(l * 100);
+            
+            hslValue.textContent = `hsl(${h}, ${s}%, ${l}%)`;
+        }
+        
+        redSlider.addEventListener('input', updateColorPicker);
+        greenSlider.addEventListener('input', updateColorPicker);
+        blueSlider.addEventListener('input', updateColorPicker);
+        
+        // Initialize color picker
+        updateColorPicker();
+        
+        // Currency Converter Functionality
+        const currencyAmount = document.getElementById('currency-amount');
+        const currencyFrom = document.getElementById('currency-from');
+        const convertButton = document.getElementById('convert-currency');
+        const conversionResults = document.getElementById('conversion-results');
+        
+        // Exchange rates (simplified fixed rates)
+        const exchangeRates = {
+            USD: 1.0,
+            EUR: 0.85,
+            GBP: 0.73,
+            JPY: 110.25,
+            CAD: 1.25,
+            AUD: 1.35,
+            CNY: 6.45,
+            INR: 74.52
+        };
+        
+        convertButton.addEventListener('click', function() {
+            const amount = parseFloat(currencyAmount.value);
+            const fromCurrency = currencyFrom.value;
+            
+            if (isNaN(amount) || amount <= 0) {
+                conversionResults.innerHTML = '<p style="color: red;">Please enter a valid amount.</p>';
+                return;
+            }
+            
+            // Calculate conversions
+            const amountInUSD = amount / exchangeRates[fromCurrency];
+            let resultsHTML = '<h4>Conversion Results:</h4>';
+            
+            Object.entries(exchangeRates).forEach(([currency, rate]) => {
+                if (currency !== fromCurrency) {
+                    const convertedAmount = amountInUSD * rate;
+                    resultsHTML += `
+                        <div class="conversion-result">
+                            <strong>${amount} ${fromCurrency} = ${convertedAmount.toFixed(2)} ${currency}</strong>
+                        </div>
+                    `;
+                }
+            });
+            
+            conversionResults.innerHTML = resultsHTML;
+        });
+    });
+    </script>
+
     <footer>
         <p>&copy; 2025 amdEX. All rights reserved.</p>
     </footer>
